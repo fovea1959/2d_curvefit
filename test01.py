@@ -25,7 +25,7 @@ gprms = [(0, 2, 2.5, 5.4, 1.5),
 
 # Standard deviation of normally-distributed noise to add in generating
 # our test function to fit.
-noise_sigma = 0.1
+noise_sigma = 0.0
 
 # The function to be fit is Z.
 Z = np.zeros(X.shape)
@@ -35,7 +35,7 @@ Z += noise_sigma * np.random.randn(*Z.shape)
 
 # Plot the 3D figure of the fitted function and the residuals.
 fig = plt.figure()
-ax = fig.gca(projection='3d')
+ax = fig.add_subplot(projection='3d')
 ax.plot_surface(X, Y, Z, cmap='plasma')
 ax.set_zlim(0,np.max(Z)+2)
 plt.show()
@@ -75,7 +75,7 @@ print('RMS residual =', rms)
 
 # Plot the 3D figure of the fitted function and the residuals.
 fig = plt.figure()
-ax = fig.gca(projection='3d')
+ax = fig.add_subplot(projection='3d')
 ax.plot_surface(X, Y, fit, cmap='plasma')
 cset = ax.contourf(X, Y, Z-fit, zdir='z', offset=-4, cmap='plasma')
 ax.set_zlim(-4,np.max(fit))
@@ -84,7 +84,7 @@ plt.show()
 # Plot the test data as a 2D image and the fit as overlaid contours.
 fig = plt.figure()
 ax = fig.add_subplot(111)
-ax.imshow(Z, origin='bottom', cmap='plasma',
+ax.imshow(Z, origin='lower', cmap='plasma',
           extent=(x.min(), x.max(), y.min(), y.max()))
 ax.contour(X, Y, fit, colors='w')
 plt.show()
