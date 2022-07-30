@@ -4,7 +4,6 @@
 import numpy as np
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 
 # The two-dimensional domain of the fit.
 xmin, xmax, nx = -5, 4, 75
@@ -12,9 +11,10 @@ ymin, ymax, ny = -3, 7, 150
 x, y = np.linspace(xmin, xmax, nx), np.linspace(ymin, ymax, ny)
 X, Y = np.meshgrid(x, y)
 
+
 # Our function to fit is going to be a sum of two-dimensional Gaussians
 def gaussian(x, y, x0, y0, xalpha, yalpha, A):
-    return A * np.exp( -((x-x0)/xalpha)**2 -((y-y0)/yalpha)**2)
+    return A * np.exp(-((x-x0)/xalpha)**2 -((y-y0)/yalpha)**2)
 
 # A list of the Gaussian parameters: x0, y0, xalpha, yalpha, A
 gprms = [(0, 2, 2.5, 5.4, 1.5),

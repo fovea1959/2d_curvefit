@@ -26,7 +26,8 @@ def SurfacePlot(func, data, fittedParameters):
     f = plt.figure(figsize=(graphWidth/100.0, graphHeight/100.0), dpi=100)
 
     matplotlib.pyplot.grid(True)
-    axes = Axes3D(f)
+    axes = Axes3D(f, auto_add_to_figure=False)
+    f.add_axes(axes)
 
     # extract data from the single list
     x_data = data[0]
@@ -84,7 +85,8 @@ def ScatterPlot(data):
     f = plt.figure(figsize=(graphWidth/100.0, graphHeight/100.0), dpi=100)
 
     matplotlib.pyplot.grid(True)
-    axes = Axes3D(f)
+    axes = Axes3D(f, auto_add_to_figure=False)
+    f.add_axes(axes)
 
     # extract data from the single list
     x_data = data[0]
