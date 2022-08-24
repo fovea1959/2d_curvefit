@@ -1,32 +1,32 @@
+#!/usr/bin/env python3
+
 # from https://stats.stackexchange.com/a/446405
 
-import numpy, scipy, scipy.optimize
-import matplotlib
-from mpl_toolkits.mplot3d import  Axes3D
-from matplotlib import cm # to colormap 3D surfaces from blue to red
+import numpy
+from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 
-graphWidth = 1200 # units are pixels
-graphHeight = 900 # units are pixels
+graphWidth = 1200  # units are pixels
+graphHeight = 900  # units are pixels
 
 x = []
 y = []
 z = []
+r = None
 
 for i in range(100002):
     if i == 0:
-        v = 1
+        r = 1
     else:
-        v = (v * 65539) % 2147483648
-    v1 = v / 2147483648.0
-    # print(v, v1)
+        r = (r * 65539) % 2147483648
+    v = r / 2147483648.0
     xyz = i % 3
     if xyz == 0:
-        x.append(v1)
+        x.append(v)
     elif xyz == 1:
-        y.append(v1)
+        y.append(v)
     else:
-        z.append(v1)
+        z.append(v)
 
 xData = numpy.array(x)
 yData = numpy.array(y)
@@ -35,10 +35,10 @@ print(len(xData), len(yData), len(zData))
 
 # place the data in a single list
 data = [xData, yData, zData]
-#print(data)
+# print(data)
 
 
-def ScatterPlot(data):
+def ScatterPlot():
     f = plt.figure(figsize=(graphWidth/100.0, graphHeight/100.0), dpi=100)
 
     # matplotlib.pyplot.grid(True)
@@ -57,9 +57,11 @@ def ScatterPlot(data):
     axes.set_ylabel('Y Data')
     axes.set_zlabel('Z Data')
 
+    axes.view_init(elev=31., azim=-126)
+
     plt.show()
-    plt.close('all') # clean up after using pyplot or else there can be memory and process problems
+    plt.close('all')  # clean up after using pyplot or else there can be memory and process problems
 
 
 if __name__ == "__main__":
-    ScatterPlot(data)
+    ScatterPlot()
